@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-navbar>
+
+      <ion-title>Nota de venta</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only color="royal" large (click)="goTicket()"> 
+          <ion-icon md="md-cart"></ion-icon>
+        </button>
+      </ion-buttons>
+   
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+    
+  <!--Codigo de Lista de info del Cliente-->
+    <ion-list no-lines>
+        <ion-item>
+                <ion-img item-start src="assets/imgs/oxxo.jpg"  width="70" height="75"></ion-img>
+                <ion-label color="primary" no_line><b>{{cliente.CL_CLIENTE}} {{cliente.CL_NOMNEGOCIO}}</b>
+                                                 <p><b>Venta Tipo: {{tipoVentaCliente}} </b></p>
+                                                 <p><b>Reconocimiento: {{reconocimientoCte | number:'1.2-2'}} </b></p>
+                                                <!---- <p><b>Revolvente: {{revolventeCliente}}</b></p>-->
+                                                 <p><b>Fecha: {{ today | date: 'medium' }}</b></p>
+                                                <!----<p><b>Reconocimiento sobrante: {{ reconocimientoSobrante | number:'1.2-2' }}</b></p>-->
+                                               
+                </ion-label>                    
+          </ion-item>
+    </ion-list>
+
+<!--Codigo para suma de importes finales-->
+<ion-grid no-padding >
+    <ion-row>
+     <!---- <ion-col col-6 style="background:#d93f8c">-->
+        <ion-col col-6 >
+       <ion-list no-lines>
+        <ion-item>               
+            <ion-label no_line><div text-right><p>Subtotal: $</p>
+                               <p>IVA: $<p>  
+                               <p>IEPS: $</p>
+                               <p>Reconocimiento: $</p>
+                           <b><p>Total a Pagar: $</p></b>
+                           <b><p>Kilolitros Acumulados: </p></b></div>
+            </ion-label>                    
+        </ion-item>
+      </ion-list>
+     </ion-col>
+     <ion-col col-6>
+        <ion-list no-lines>
+         <ion-item>               
+             <ion-label no_line><div class="item no-padding" text-left>
+                                <p>{{subtotalVta | number:'1.2-2' }}<p>  
+                                <p>{{IVAVta | number:'1.2-2' }}</p>
+                                <p>{{IEPSVta | number:'1.2-2' }}</p>
+                                <p>{{reconocimientoVta | number:'1.2-2' }}</p>
+                                <b><p>{{totalFinal | number:'1.2-2' }}</p></b>
+                                <p>{{KLAcumVta | number:'1.3-3' }}</p></div>
+             </ion-label>                    
+         </ion-item>
+       </ion-list>
+      </ion-col>
+    </ion-row>
+ </ion-grid>
+   
+
+
+  <!--Codigo de Boton para agregar-->
+    <ion-buttons>    <!-- abre la ventana temporal para ver los productos-->
+        <button full ion-button icon-only (click)="openModal()"><ion-icon name="add"></ion-icon> Catalogo de Productos </button>
+    </ion-buttons>
+
+<ion-card>
+  <ion-card-content>
+      <ion-scroll scrollY="true"> 
+          <ion-list> 
+    <ion-item-sliding *ngFor="let producto of productos">
+        <ion-item>
+      <ion-row>
+        <ion-col col-2>
+          <ion-avatar item-start>
+            <img src="http://placehold.it/10x10">
+          </ion-avatar>
+        </ion-col>
+        <ion-col col-10 class="rowCol">
+          <ion-col class="dataCol">
+            <ion-row >
+              <ion-col col-12>
+                <span>
+                  <b>{{producto.clave}} {{producto.nombre}}</b>
+                </span>
+              </ion-col>
+            </ion-row>
+              <ion-row>
+                  <ion-col col-12>
+                    <span>
+                      Cantidad: <b>{{producto.cantidad}}</b> 
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-12>
+
+                      <span>
+                        Precio: <b>${{producto.precio}}</b>
+                      </span>
+                    </ion-col>
+                  </ion-row>
+              <ion-row>
+                  <ion-col col-12>
+                     <span>
+                        IVA: <b>${{producto.iva | number:'1.2-2' }}</b>
+                     </span>
+                   </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col col-12>
+                     <span>
+                        IEPS: <b>${{producto.ieps | number:'1.2-2' }}</b>
+                     </span>
+                   </ion-col>
+              </ion-row>
+             <ion-row>
+                 <ion-col col-12>
+                    <span>
+                        Importe: <b>${{producto.importe | number:'1.2-2' }}         </b>
+                    </span>   
+                   </ion-col>
+               </ion-row>  
+               </ion-col>
+        </ion-col>
+      </ion-row> 
+               </ion-item>
+                    <ion-item-options> <!--Codigo para Eliminar claves de la venta-->
+                     <button ion-button icon-only (click)="deleteClave(producto)" danger>
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+              </ion-item-options>
+              
+    </ion-item-sliding>  
+  </ion-list>      
+  </ion-scroll> 
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

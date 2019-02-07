@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Clientes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <ion-item *ngFor="let cliente of clientesSQL; let i=index">
+    <ion-row>
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img src="http://placehold.it/10x10">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10 class="rowCol">
+        <h2 (click)="carritoVentas($event, cliente)" class="companyname" text-wrap>
+          {{cliente.CL_NOMNEGOCIO}}
+        </h2>
+        <ion-col class="dataCol">
+          <ion-row>
+            <ion-col col-12>
+              <span>
+                <ion-icon name="ios-grid-outline" class="iconClass"> </ion-icon>
+                {{cliente.CL_CLIENTE}}
+              </span>
+            </ion-col>
+            <ion-col col-12>
+              <span>
+                <ion-icon name="contact" class="iconClass"> </ion-icon>
+                {{cliente.CL_PUNTOVENTA}}
+              </span>
+            </ion-col>
+            <ion-col col-12 text-wrap>
+              <ion-icon name="pin" class="iconClass"></ion-icon>
+              {{cliente.CL_DIRNEGOCIO}}, {{cliente.CL_COLNEGOCIO}}
+            </ion-col>
+            <ion-col col-12 class="rating">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              (4.5)
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-content>

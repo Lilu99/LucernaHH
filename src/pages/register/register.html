@@ -1,0 +1,21 @@
+<ion-content padding>
+  <div padding>
+      <div class="logo">
+          <img src="http://placeholder.it/50x50">
+        </div>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="fullname" name="fullname" placeholder="FullName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="email" [(ngModel)]="email" name="email" placeholder="Email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <button ion-button block class="loginBtn"(click)="userSignup()">Login</button>
+        <br>
+        <button ion-button block clear class="signup" (click)="loginPage()" >Already have an account? Login</button> 
+  </div>
+</ion-content>

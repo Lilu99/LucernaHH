@@ -1,0 +1,49 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Capturar Cliente Nuevo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div>
+    <ion-item>
+      <ion-label color ="primary" stacked>clave</ion-label>
+      <ion-input type="text" [(ngModel)]="PD_CLAVE"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color ="primary" stacked>nombres</ion-label>
+        <ion-input type="text"[(ngModel)]="PD_NOMBRE"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>UM</ion-label>
+          <ion-input type="text" [(ngModel)]="PD_UM"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>grupo</ion-label>
+          <ion-input type="text" [(ngModel)]="PD_GRUPO"></ion-input>
+      </ion-item>
+      <ion-item>
+           <ion-label color ="primary" stacked>cantidad</ion-label>
+           <ion-input type="text"  [(ngModel)]="PD_CANTXCAJA"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>baja</ion-label>
+          <ion-input type="text"  [(ngModel)]="PD_BAJA"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color ="primary" stacked>sucursal</ion-label>
+        <ion-input type="text"  [(ngModel)]="PD_SUCURSAL"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color ="primary" stacked>empresa</ion-label>
+      <ion-input type="text"  [(ngModel)]="PD_EMPRESA"></ion-input>
+  </ion-item>
+      <ion-item>
+        <button ion-button block (click)="register()">Register</button>
+      </ion-item>
+  </div>
+</ion-content>

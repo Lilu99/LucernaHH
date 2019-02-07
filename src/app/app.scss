@@ -1,0 +1,85 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+.toolbar-title-md{
+    color: color($colors, greycolor);
+}
+
+.bar-button{
+    color: color($colors, greycolor);
+}
+
+.sidebarmenu{
+    margin-left: 0px !important;
+
+}
+
+ion-title{
+    margin-left: -15px;
+    width: 100% !important;
+    float: left;
+}
+
+.back-button{
+    margin-left: -3px;
+}
+.toolbar-title-md{
+    margin-left: -5px !important;
+}
+
+ion-content{
+    ion-avatar img{
+        border-radius: 0px !important;
+        width: 50px !important;
+        height: 50px !important;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .rowCol{
+        margin-top:3px;
+        height: auto;
+        bottom: -3px !important;
+        padding-bottom: 0px !important;
+        color: color($colors, greycolor);
+        padding-left: 15px !important;
+    }
+
+    .companyname{
+        width: auto !important;
+        color: #4aa1f3;
+        font-weight: bold;
+        font-size: 18px;
+        padding-left:5px;
+    }
+
+    .iconClass.icon-md{
+        padding-left: 5px !important;
+        color: #4aa1f3;
+        margin-left: -3px !important;
+    }
+
+    .dataCol{
+        padding: 0px;
+        margin-top: 4px !important;
+        width: auto !important;
+    }
+
+
+
+}

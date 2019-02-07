@@ -1,0 +1,77 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Captura nota TEST</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div>
+    <ion-item>
+      <ion-label color ="primary" stacked>NV_NOTA</ion-label>
+      <ion-input type="text" [(ngModel)]="NV_NOTA"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color ="primary" stacked>NV_CLIENTE</ion-label>
+        <ion-input type="text"[(ngModel)]="NV_CLIENTE"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>NV_RAZON_SOCIAL</ion-label>
+          <ion-input type="text" [(ngModel)]="NV_RAZON_SOCIAL"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>NV_NOMBRE_CLIENTE</ion-label>
+          <ion-input type="text" [(ngModel)]="NV_NOMBRE_CLIENTE"></ion-input>
+      </ion-item>
+      <ion-item>
+           <ion-label color ="primary" stacked>NV_FECHA</ion-label>
+           <ion-input type="text"  [(ngModel)]="NV_FECHA"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>NV_RUTA</ion-label>
+          <ion-input type="text"  [(ngModel)]="NV_RUTA"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color ="primary" stacked>NV_TIPO_VENTA</ion-label>
+        <ion-input type="text"  [(ngModel)]="NV_TIPO_VENTA"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color ="primary" stacked>NV_SUBTOTAL</ion-label>
+      <ion-input type="text"  [(ngModel)]="NV_SUBTOTAL"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color ="primary" stacked>NV_IVA</ion-label>
+    <ion-input type="text"  [(ngModel)]="NV_IVA"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color ="primary" stacked>NV_IEPS</ion-label>
+  <ion-input type="text"  [(ngModel)]="NV_IEPS"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color ="primary" stacked>NV_RECONOCIMIENTO</ion-label>
+  <ion-input type="text"  [(ngModel)]="NV_RECONOCIMIENTO"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color ="primary" stacked>NV_TOTAL</ion-label>
+  <ion-input type="text"  [(ngModel)]="NV_TOTAL"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color ="primary" stacked>NV_CORPO_CLIENTE</ion-label>
+  <ion-input type="text"  [(ngModel)]="NV_CORPO_CLIENTE"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color ="primary" stacked>NV_ESTATUS_NOTA</ion-label>
+  <ion-input type="text"  [(ngModel)]="NV_ESTATUS_NOTA"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color ="primary" stacked>NV_KILOLITROS_VENDIDOS</ion-label>
+  <ion-input type="text"  [(ngModel)]="NV_KILOLITROS_VENDIDOS"></ion-input>
+</ion-item>
+      <ion-item>
+        <button ion-button block (click)="register()">Registrar</button>
+      </ion-item>
+  </div>
+</ion-content>

@@ -1,0 +1,78 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Capturar Cliente Nuevo</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content >
+    <div>
+      <ion-item>
+        <ion-label color ="primary" stacked>Numero Cliente</ion-label>
+        <ion-input type="text" [(ngModel)]="num_cliente"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color ="primary" stacked>Nombre Negocio</ion-label>
+          <ion-input type="text"[(ngModel)]="nombre_negocio"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Razon Social</ion-label>
+            <ion-input type="text" [(ngModel)]="razon_social"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Direccion</ion-label>
+            <ion-input type="text" [(ngModel)]="direccion"></ion-input>
+        </ion-item>
+        <ion-item>
+             <ion-label color ="primary" stacked>Colonia Negocio</ion-label>
+             <ion-input type="text"  [(ngModel)]="colonia_negocio"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Corporacion</ion-label>
+            <ion-input type="text"  [(ngModel)]="corporacion"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Ruta</ion-label>
+            <ion-input type="text"  [(ngModel)]="ruta"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Lunes</ion-label>
+            <ion-input type="text"  [(ngModel)]="lunes"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Martes</ion-label>
+            <ion-input type="text"  [(ngModel)]="martes"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Miercoles</ion-label>
+            <ion-input type="text"  [(ngModel)]="miercoles"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Jueves</ion-label>
+            <ion-input type="text"  [(ngModel)]="juevez"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>viernes</ion-label>
+            <ion-input type="text"  [(ngModel)]="viernes"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Sabado</ion-label>
+            <ion-input type="text"  [(ngModel)]="sabado"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Domingo</ion-label>
+            <ion-input type="text"  [(ngModel)]="domingo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color ="primary" stacked>Estatus</ion-label>
+            <ion-input type="text"  [(ngModel)]="estatus"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button block (click)="register()">Registrar</button>
+        </ion-item>
+    </div>
+  </ion-content>
+  

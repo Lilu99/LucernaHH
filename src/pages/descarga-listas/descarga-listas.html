@@ -1,0 +1,56 @@
+<ion-header no-border>
+
+  <ion-navbar transparent>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Descarga De Datos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content >
+
+  <ion-card class="card1">
+    <ion-icon name="log-in"></ion-icon>
+    <ion-card-header class="header" >
+      Descargar Todo
+    </ion-card-header>
+    <ion-card-content>
+      <p class="text-content">
+        Descargar todas las listas
+      </p>
+
+      <button class="btn1" ion-button block (click)='doSQL()'>Descargar</button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card2">
+    <ion-icon name="search"></ion-icon>
+    <ion-card-header class="header">
+      Descarga de Clientes
+    </ion-card-header>
+    <ion-card-content>
+      <p class="text-content">
+        Descargar solo clientes
+      </p>
+
+      <button class="btn2" ion-button block>Descargar</button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card3">
+    <ion-icon name="star"></ion-icon>
+    <ion-card-header class="header">
+      Descargar de precios
+    </ion-card-header>
+    <ion-card-content>
+      <p class="text-content">
+        Descargar solo precios
+      </p>
+
+      <button class="btn3" ion-button block>Descargar</button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

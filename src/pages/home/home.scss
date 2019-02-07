@@ -1,0 +1,98 @@
+page-home {
+    ion-content{
+        background: white;
+        color: color($colors, light);
+
+        ion-card {
+            color: color($colors, light);
+        }
+
+        .header1 {
+            text-align: center;
+            color: color($colors, greycolor);
+            font-size: 30px;
+            margin-top: 20px;
+        }
+
+        .text-content1{
+            text-align: center;
+            color: color($colors, greycolor);
+            font-size: 20px;
+            margin-bottom: 35px;
+            margin-top: 0px;
+        }
+
+        .card1 {
+            border: none !important;
+            border-radius: 5%;
+            background: rgba(241, 140, 72, 0.781);
+            height: 250px;
+            margin-bottom: 20px !important;
+        }
+
+        .card2 {
+            border: none !important;
+            border-radius: 5%;
+            background: rgba(70, 224, 204, 0.8);
+            height: 250px;
+            margin-bottom: 20px !important;
+        }
+
+        .card3 {
+            border: none !important;
+            border-radius: 5%;
+            background: rgba(97, 204, 70, 0.8);
+            height: 250px;
+            margin-bottom: 30px !important;
+        }
+
+        .card-header{
+            color: color($colors, light);
+            text-align: center !important;
+            font-size: 1.8em !important;
+            font-weight: 500;
+            padding-top: 0px !important;
+            padding-bottom: 10px !important;
+        }
+
+        .card-header-md.hello {
+            font-size: 25px !important;
+            font-weight: 900 !important;
+        }
+
+        .card-md p{
+            color: color($colors, light);
+            text-align: center !important;
+            font-size: 1.7rem !important;
+            margin-bottom: 10px !important;
+        }
+
+        .button{
+            color: white !important;
+            width: 50%;
+            margin: 0 auto !important;
+            text-align: center !important;
+            border: 1px solid white;
+        }
+
+        .btn1{
+            background: rgba(70, 224, 204, 0.8);
+        }
+
+        .btn2{
+            background: rgba(97, 204, 70, 0.8);
+        }
+
+        .btn3{
+            background: rgba(241, 140, 72, 0.781);
+        }
+
+        .icon-md {
+            font-size: 70px;
+            text-align: center !important;
+            margin-top: 10px !important;
+            margin-left: 125px !important;
+        }
+    }
+
+}
