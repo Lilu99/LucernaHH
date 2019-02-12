@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ɵConsole, SimpleChange } from '@angular/core';
 import {IonicPage, NavController,ModalController,AlertController, NavParams,ToastController,  ViewController} from 'ionic-angular';
 import {PrintProvider} from '../../providers/print/print';
 import {PrinterListModalPage} from '../printer-list-modal/printer-list-modal';
@@ -80,6 +80,8 @@ export class TicketPage {
 
     db:SQLiteObject;
 
+    errorImpresion:string;
+
 
   constructor(public navCtrl: NavController,private modalCtrl:ModalController,
     private printProvider:PrintProvider,  private view: ViewController,
@@ -89,7 +91,7 @@ export class TicketPage {
       
       //proceso para recibir la informacion desde el carrito
       this.cliente = navParams.get('cliente'); //arreglo para datos del cliente
-
+      console.log('CLIENTE EN TICKET',this.cliente)
       this.clavesVta = navParams.get('productos'); //arreglo para datos de la venta
 
       this.tipoVentaCliente = navParams.get('tipoVentaCliente'); //informacion del total de la venta
@@ -219,7 +221,7 @@ export class TicketPage {
           if(this.reconocimientoVta>0)  //si se utilizo reconocimiento en esta venta  se manda llamar la funcion que actualiza el valor de reconocimiento sobrante.
            {this.actualizarReconocimiento();}
 
-         // this.imprimirNotaVta();
+          //this.imprimirNotaVta();//DESCO
        
         }
         
@@ -276,6 +278,7 @@ this.fechaHoraFinal= this.fechaActual.toLocaleDateString('en-GB')+" "+this.horaF
 
   buscarImpresora()
   {
+    this.errorImpresion='N';
     this.printProvider.searchBt().then(datalist=>{
       
       //1. Open printer select modal
@@ -292,16 +295,17 @@ this.fechaHoraFinal= this.fechaActual.toLocaleDateString('en-GB')+" "+this.horaF
         xyz.present();*/
 
       });
-      
+      this.errorImpresion='N';
       //0. Present Modal
       abc.present();
 
     },err=>{
-      console.log("ERROR",err);
+      console.log("ERROR DE CONEXION: Reimprima mas tarde",err);
       let mno=this.alertCtrl.create({
-        title:"ERROR "+err,
-        buttons:['Dismiss']
+        title:"La nota no puede ser impresa pero la venta se realizo correctamente ("+err+")",
+        buttons:['Aceptar']
       });
+      this.errorImpresion='S';
       mno.present();
     })
 
@@ -309,6 +313,8 @@ this.fechaHoraFinal= this.fechaActual.toLocaleDateString('en-GB')+" "+this.horaF
 
   imprimirNotaVta()
   {
+   if(this.errorImpresion!='S')
+   {
     var id=this.selectedPrinter.id;
     if(id==null||id==""||id==undefined)
     {
@@ -343,6 +349,7 @@ this.fechaHoraFinal= this.fechaActual.toLocaleDateString('en-GB')+" "+this.horaF
 
   alert.present();
 
+     }
     }
   }
 
@@ -418,18 +425,18 @@ this.fechaHoraFinal= this.fechaActual.toLocaleDateString('en-GB')+" "+this.horaF
 
          this.InsertaVta = `INSERT INTO tb_hh_nota_venta (NV_NOTA, NV_CLIENTE, NV_RAZON_SOCIAL, NV_NOMBRE_CLIENTE, NV_FECHA, NV_RUTA, NV_TIPO_VENTA, NV_SUBTOTAL, NV_IVA, NV_IEPS, NV_RECONOCIMIENTO, NV_TOTAL, NV_CORPO_CLIENTE, NV_ESTATUS_NOTA, NV_KILOLITROS_VENDIDOS) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
 
-        return db.executeSql(this.InsertaVta, [this.ultimoFolio, this.cliente.CL_CLIENTE, this.cliente.CL_PUNTOVENTA,this.cliente.CL_NOMNEGOCIO,this.fechaHoraFinal,this.rutamail, this.tipoVentaCliente, this.subtotalVta, this.IVAVta, this.IEPSVta, this.reconocimientoVta, this.totalFinal, this.cliente.CL_CORPORACION, 'ACTIVA', this.KLAcumVta])
+         db.executeSql(this.InsertaVta, [this.ultimoFolio, this.cliente.CL_CLIENTE, this.cliente.CL_PUNTOVENTA,this.cliente.CL_NOMNEGOCIO,this.fechaHoraFinal,this.rutamail, this.tipoVentaCliente, this.subtotalVta, this.IVAVta, this.IEPSVta, this.reconocimientoVta, this.totalFinal, this.cliente.CL_CORPORACION, 'ACTIVA', this.KLAcumVta])
          .catch(e => console.log(e));    
        }).then(res =>{
         
         for (var p=0; p<this.clavesVta.length; p++){
           console.log(this.clavesVta.length)
-          console.log("hey look at MEEE")
+   
         this.InsertaDetaVta = `INSERT INTO tb_hh_nota_detalle (DN_FECHA, DN_NOTA, DN_CLAVE, DN_DESCRIPCION, DN_CANTIDAD_PIEZAS, DN_PRECIO, DN_IVA, DN_IEPS, DN_IMPORTE) VALUES (?,?,?,?,?,?,?,?,?)`
 
-        console.log('variables deta',this.fechaHoraFinal, this.ultimoFolio,this.clavesVta[p]['clave'],  this.clavesVta[p]['nombre'], this.clavesVta[p]['cantidad'], this.clavesVta[p]['precio'], this.clavesVta[p]['iva'], this.clavesVta[p]['ieps'], this.clavesVta[p]['importe']);
+        //|console.log('variables deta',this.fechaHoraFinal, this.ultimoFolio,this.clavesVta[p]['clave'],  this.clavesVta[p]['nombre'], this.clavesVta[p]['cantidad'], this.clavesVta[p]['precio'], this.clavesVta[p]['iva'], this.clavesVta[p]['ieps'], this.clavesVta[p]['importe']);
 
-         this.db.executeSql(this.InsertaDetaVta,[this.fechaHoraFinal, this.ultimoFolio,this.clavesVta[p]['clave'],  this.clavesVta[p]['nombre'], this.clavesVta[p]['cantidad'], this.clavesVta[p]['precio'], this.clavesVta[p]['iva'], this.clavesVta[p]['ieps'], this.clavesVta[p]['importe']])
+          this.db.executeSql(this.InsertaDetaVta,[this.fechaHoraFinal, this.ultimoFolio,this.clavesVta[p]['clave'],  this.clavesVta[p]['nombre'], this.clavesVta[p]['cantidad'], this.clavesVta[p]['precio'], this.clavesVta[p]['iva'], this.clavesVta[p]['ieps'], this.clavesVta[p]['importe']])
          .catch(e => console.log(e));
         }
        }

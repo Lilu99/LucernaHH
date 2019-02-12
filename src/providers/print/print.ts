@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import {AlertController, DateTime} from 'ionic-angular';
+import {AlertController, DateTime, ToastController,} from 'ionic-angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { T } from '@angular/core/src/render3';
 
@@ -26,7 +26,7 @@ export class PrintProvider {
     s='';
     horaFinal=''; //concatenado de todas las partes que conforman la hora
 
-  constructor(private btSerial:BluetoothSerial,private alertCtrl:AlertController) { }
+  constructor(private btSerial:BluetoothSerial,private alertCtrl:AlertController, private toastCtrl: ToastController) { }
 
   searchBt()
   {
@@ -41,7 +41,21 @@ export class PrintProvider {
 
   ProveedorimpresionNotaVta(address,cliente,clavesVta,tipoVentaCliente, reconocimientoVta,subtotalVta,IVAVta, totalFinal,KLAcumVta,IEPSVta, rutamail, tipoImpresion, ultimoFolio )
   {
-    console.log(cliente.CL_CLIENTE);
+    if(address==null||address==""||address==undefined)
+    {
+      //No hay alguna impresora seleccionada: la direccion sera nula, vacia o indefinida
+      let toast = this.toastCtrl.create({ //muestra un mensaje tipo toast
+        message:'El proceso se realizó correctamente, pero No se encontró la impresora vinculada o el Bluetooth esta apagado. Revise el equipo y reimprima su nota mas tarde.',
+        duration: 6000,
+        position:'top' 
+
+      });
+      toast.present();
+    }
+
+   else
+   { 
+    console.log(cliente.CL_CLIENTE,'EN PRINT'); //cliente debe ser un objeto: los campos en los objeto se leen objeto.campo y en un arreglo es arreglo[pos]['campo']
 
    // Si la Hora, los Minutos o los Segundos son Menores o igual a 9, le añadimos un 0 */
     if (this.Hora <= 9) 
@@ -70,7 +84,7 @@ export class PrintProvider {
     "\r\n" + " RIO BRAVO, CD. JUAREZ, CHIH. "+
     "\r\n" + "          C.P. 32553"+
     "\r\n" + " "+
-    "\r\n" + "    NOTA DE VENTA "+tipoImpresion+
+    "\r\n" + "   NOTA DE VENTA "+tipoImpresion+
     "\r\n" + " "+
     "\r\n" + "RUTA: "+rutamail+
     "\r\n" + "FOLIO: "+ultimoFolio+
@@ -191,7 +205,7 @@ else
         });
         mno.present();
       });
-
+    }
   }
 
   //CODIGO PARA CONVERTIR EL TOTAL DE NUMERO A LETRA

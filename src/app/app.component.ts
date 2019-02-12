@@ -29,6 +29,8 @@ export class MyApp {
   LimpiarPromos:string;
   LimpiarFolios: string;
   LimpiarInventario:string;
+  LimpiarNotas:string;
+  LimpiarDetalleNotas:string;
 
 
 
@@ -134,8 +136,14 @@ export class MyApp {
       this.LimpiarFolios = `DROP TABLE tb_hh_folio`
       db.executeSql(this.LimpiarFolios,[])
 
-      this.LimpiarInventario = `DROP TABLE tb_hh_inventario `
+      this.LimpiarInventario = `DROP TABLE tb_hh_inventario`
       db.executeSql(this.LimpiarInventario,[])
+
+      this.LimpiarNotas = `DROP TABLE tb_hh_nota_venta`
+      db.executeSql(this.LimpiarNotas,[])
+
+      this.LimpiarDetalleNotas = `DROP TABLE tb_hh_nota_detalle`
+      db.executeSql(this.LimpiarDetalleNotas,[])
 
     })
 
