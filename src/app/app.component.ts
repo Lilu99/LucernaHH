@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App,AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage} from '@ionic/storage';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite'; //AGREGAR PARA USAR SQL
+import { CarritoVtPage } from '../pages/carrito-vt/carrito-vt';
 
 
 @Component({
@@ -39,12 +40,14 @@ export class MyApp {
 
 
 
-  constructor(public platform: Platform, 
+  constructor(  public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    private storage: Storage,private sqlite: SQLite //Agregar para usar SQL
-    ) {
-
+    private alertCtrl:AlertController,
+    private storage: Storage,private sqlite: SQLite, //Agregar para usar SQL
+    private app:App) {
+    
+   
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -56,6 +59,37 @@ export class MyApp {
       {title: 'Leaderboard', component:'HomePage', icon:'archive'}
     ];
 
+
+    platform.registerBackButtonAction(() =>{ 
+      let Nav = app.getActiveNavs()[0];
+      let active= Nav.getActive();
+
+     if(active.instance instanceof CarritoVtPage)
+     {
+      const prompt = this.alertCtrl.create({
+        title:'Confirmación:',
+      
+          message:'Si regresa a página de Inicio el registro de esta nota de venta No será guardado.',
+          buttons:[
+            {
+              text: 'Ir a Inicio.',
+              handler:()=>{
+                //this.nav.popTo(this.nav.getByIndex(1)); //regresa a a pagina del listado de clientes
+                this.nav.setRoot("HomePage"); //regresa a la pagina de Inicio 
+            }
+          },
+          {
+            text:'Ir a Venta.',
+            handler: ()=>{
+            }       
+          }
+          ]
+        });
+        prompt.present();
+
+      }
+
+    })
   }
 
   ionViewWillEnter(){

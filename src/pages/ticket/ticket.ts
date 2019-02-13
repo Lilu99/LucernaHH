@@ -5,6 +5,7 @@ import {PrinterListModalPage} from '../printer-list-modal/printer-list-modal';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import{Storage} from '@ionic/storage'
 import {NotaVentaProvider} from '../../providers/nota-venta/nota-venta'
+import { ClientesPage } from '../clientes/clientes';
 
 /**
  * Generated class for the TicketPage page.
@@ -81,7 +82,7 @@ export class TicketPage {
     db:SQLiteObject;
 
     errorImpresion:string;
-
+     nav;
 
   constructor(public navCtrl: NavController,private modalCtrl:ModalController,
     private printProvider:PrintProvider,  private view: ViewController,
@@ -89,6 +90,7 @@ export class TicketPage {
     public navParams: NavParams,  private toastCtrl: ToastController,
     public Storage:Storage, private sqlite: SQLite, private notaVenta: NotaVentaProvider) {
       
+      this.nav=navCtrl;
       //proceso para recibir la informacion desde el carrito
       this.cliente = navParams.get('cliente'); //arreglo para datos del cliente
       console.log('CLIENTE EN TICKET',this.cliente)
@@ -206,11 +208,10 @@ export class TicketPage {
         {
           text: 'Cancelar',
           handler: data =>{
-            console.log('cancelado');
-          }
+         console.log('cancelado');
+        }
       },
       {
-        
         text:'Guardar',
         handler: data=>{
           this.restar();
@@ -221,8 +222,9 @@ export class TicketPage {
           if(this.reconocimientoVta>0)  //si se utilizo reconocimiento en esta venta  se manda llamar la funcion que actualiza el valor de reconocimiento sobrante.
            {this.actualizarReconocimiento();}
 
-          //this.imprimirNotaVta();//DESCO
-       
+          this.imprimirNotaVta();//DESCO
+          
+          this.nav.popTo(this.nav.getByIndex(1)); //regresa a la pagina de clientes (2 paginas atras)
         }
         
       }

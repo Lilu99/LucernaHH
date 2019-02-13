@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController, 
 import { isRightSide } from 'ionic-angular/umd/util/util';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
-//nota en SQLite al 06-feb-2019 18:21pm
+//validaciones y backs al 12-feb-2019 18:00pm
 
 @IonicPage()
 @Component({
@@ -58,6 +58,9 @@ export class CarritoVtPage {
  CveEnLista:string  //esta variable se utiliza como bandera para indicar cuando la clave ya fue previamente agregada en la misma lista de venta.
  CveDuplicada:string
 
+ nav
+ confirmarSalida:number
+
  //version final
   constructor(
     public navCtrl: NavController, 
@@ -71,7 +74,7 @@ export class CarritoVtPage {
     ) {
         
        this.productos;
-
+       this.nav=navCtrl;
        this.cliente = navParams.get('cliente');
  
        this.numCliente=49;
@@ -102,7 +105,7 @@ export class CarritoVtPage {
 
     } 
 
-
+  
     //FUNCION PARA AGREGAR PRODUCTO
     addClave(){
 
@@ -137,13 +140,6 @@ export class CarritoVtPage {
     if(index > -1){
         this.productos.splice(index, 1);
     }
-
-    
-    /*let toast = this.toastCtrl.create({ //muestra un mensaje
-        message: index+'  ' +cve,
-        duration: 3000
-      });
-      toast.present();*/
 
 
       //inicializar en cero antes de recalcular
@@ -380,6 +376,19 @@ export class CarritoVtPage {
 
   goTicket(){
 
+    if(this.productos.length==0)
+    {
+        let toast = this.toastCtrl.create({ //muestra un mensaje
+        message:'No se han agregado productos a la venta.',
+        duration: 3500,
+        position: 'top' 
+
+      });
+      toast.present();
+    }
+
+    if((this.productos.length>0))
+    {
     //Envia los datos para la pagina del ticket
     this.navCtrl.push("TicketPage",{
       cliente: this.cliente,  //envia arreglo de datos del cliente
@@ -393,7 +402,8 @@ export class CarritoVtPage {
       KLAcumVta: this.KLAcumVta,
       producto: this.productos,
       reconocimientoSobrante:this.reconocimientoSobrante
-    });
+       });
+    }
   }
 
 }//FIN1

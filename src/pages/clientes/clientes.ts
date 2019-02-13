@@ -65,7 +65,7 @@ export class ClientesPage {
 
 
   carritoVentas(event, clientesSQL){
-    this.navCtrl.push("CarritoVtPage",{
+    this.navCtrl.setRoot("CarritoVtPage",{
       cliente: clientesSQL
     });
   }
